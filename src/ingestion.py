@@ -4,7 +4,7 @@ import unicodedata
 from collections import Counter
 from pathlib import Path
 
-import fitz  # PyMuPDF
+import pymupdf
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 import config
