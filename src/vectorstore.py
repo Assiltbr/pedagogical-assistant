@@ -42,3 +42,8 @@ def get_doc_chunks(doc: str) -> list[dict]:
     res = get_collection().get(where={"doc": doc}, include=["documents", "metadatas"])
     items = [{"text": t, "meta": m} for t, m in zip(res["documents"], res["metadatas"])]
     return sorted(items, key=lambda c: c["meta"]["chunk"])
+
+def list_docs() -> list[str]:
+    """Names of all indexed documents."""
+    res = get_collection().get(include=["metadatas"])
+    return sorted({m["doc"] for m in res["metadatas"]})
