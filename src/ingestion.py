@@ -18,7 +18,7 @@ def extract_pages(path: str) -> list[dict]:
     """Return [{'page': int, 'text': str}, ...]. Supports .pdf and .txt/.md."""
     p = Path(path)
     if p.suffix.lower() == ".pdf":
-        with fitz.open(p) as doc:
+        with pymupdf.open(p) as doc:
             return [{"page": i + 1, "text": page.get_text()}
                     for i, page in enumerate(doc)]
     text = p.read_text(encoding="utf-8")

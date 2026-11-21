@@ -36,3 +36,9 @@ def search(query: str, k: int = config.TOP_K, doc: str | None = None) -> list[di
 
 def delete_doc(doc: str) -> None:
     get_collection().delete(where={"doc": doc})
+
+def get_doc_chunks(doc: str) -> list[dict]:
+    """All chunks of a document, in reading order."""
+    res = get_collection().get(where={"doc": doc}, include=["documents", "metadatas"])
+    items = [{"text": t, "meta": m} for t, m in zip(res["documents"], res["metadatas"])]
+    return sorted(items, key=lambda c: c["meta"]["chunk"])
