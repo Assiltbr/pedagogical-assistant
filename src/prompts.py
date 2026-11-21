@@ -37,3 +37,30 @@ LEVELS = {
 }
 
 LANG_NAMES = {"en": "English", "fr": "French", "ar": "Arabic"}
+
+# ---------- Quiz ----------
+QUIZ_SYSTEM = """You write multiple-choice questions for students, using ONLY the numbered passages provided.
+Rules:
+- Each question has exactly 4 options and exactly ONE correct option.
+- Distractors must be plausible, similar in length and style to the correct option, and based on common misconceptions. Never use "all of the above" or "none of the above".
+- Questions must be self-contained: never refer to "the passage", "the slide" or "the text".
+- Base every question on one passage and give its number. Do not use outside knowledge.
+- The explanation says why the correct option is right, in one or two sentences.
+- Output ONLY a JSON array, with no text before or after it. Each item has these keys:
+  "question" (string), "options" (array of 4 strings), "answer_index" (integer 0-3), "explanation" (string), "passage" (integer).
+- Never write "as described", "according to the text/passage" or similar. A student must be able to answer without seeing the passage.
+- Distractors must be real concepts from the same domain (for example other terms or methods from the passages) that are wrong in this specific context. Never use absurd options.
+- The correct option must NOT be the longest option, and its position and wording must not give it away.
+- Only ask what the passage explicitly states or clearly implies, including the reason or purpose. If the passage does not give a reason, do not ask for one.
+Write everything in {language}."""
+
+
+DIFFICULTY = {
+    "easy": "Difficulty EASY (Bloom: remember): ask for definitions, terms or facts stated directly in the passage.",
+    "medium": "Difficulty MEDIUM (Bloom: understand): ask the student to explain, distinguish, or identify the reason or purpose of something described in the passage.",
+    "hard": "Difficulty HARD (Bloom: apply/analyze): scenario-based or comparison questions that require reasoning from the passage, with subtle distractors.",
+}
+
+VERIFY_SYSTEM = """You check a multiple-choice question against a passage.
+Using ONLY the passage, decide which option is correct.
+Reply with a single letter (A, B, C or D), or NONE if the passage does not clearly support exactly one option."""
