@@ -187,3 +187,6 @@ cache/
 models/
 *.gguf
 .vscode/
+cache/
+summary.txt
+arabic_check.py
