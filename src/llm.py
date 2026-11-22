@@ -44,7 +44,6 @@ def _generate_ollama(messages: list[dict], temperature: float) -> str:
     text = data["message"]["content"]
     return re.sub(r"<think>.*?</think>", "", text, flags=re.S).strip()
 
->>>>>>> feature/ui
 def generate(prompt: str, system: str | None = None,
              temperature: float = 0.2, backend: str | None = None) -> str:
     name = backend or config.LLM_BACKEND
