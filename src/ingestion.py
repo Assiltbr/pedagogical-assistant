@@ -162,3 +162,9 @@ def ingest(path: str, chunk_size: int = config.CHUNK_SIZE,
     if is_scanned(pages):
         raise ValueError(f"'{path}' looks scanned (no extractable text). OCR needed.")
     return chunk_pages(pages, Path(path).name, chunk_size, overlap)
+#---------- 
+def get_doc_chunks(doc: str) -> list[dict]:
+    """All chunks of a document, in reading order."""
+    res = get_collection().get(where={"doc": doc}, include=["documents", "metadatas"])
+    items = [{"text": t, "meta": m} for t, m in zip(res["documents"], res["metadatas"])]
+    return sorted(items, key=lambda c: c["meta"]["chunk"])

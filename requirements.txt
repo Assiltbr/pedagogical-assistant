@@ -1,0 +1,9 @@
+chromadb
+httpx
+langchain-text-splitters
+openai
+pydantic
+pymupdf
+python-dotenv
+sentence-transformers
+streamlit[pdf]>=1.48
