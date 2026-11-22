@@ -20,14 +20,15 @@ def _question_lang(q: str) -> str:
     return "fr" if set(re.findall(r"[a-zà-ÿ'-]+", q.lower())) & fr_words else "en"
 
 
-def answer(question: str, k: int = config.TOP_K, doc: str | None = None) -> dict:
+def answer(question: str, k: int = config.TOP_K, doc: str | None = None,
+           backend: str | None = None) -> dict:
     hits = search(question, k=k, doc=doc)
     passages = "\n\n".join(
         f"[{i}] ({h['meta']['doc']}, {_pages(h['meta'])})\n{h['text']}"
         for i, h in enumerate(hits, 1)
     )
     prompt = f"Passages:\n{passages}\n\nQuestion: {question}"
-    text = generate(prompt, system=RAG_SYSTEM, temperature=0.1).strip()
+    text = generate(prompt, system=RAG_SYSTEM, temperature=0.1, backend=backend).strip()
 
     if "NOT_FOUND" in text:
         return {"answer": NOT_FOUND_MESSAGES[_question_lang(question)],

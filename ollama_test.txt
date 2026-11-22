@@ -1,0 +1,6 @@
+[fr] 164.9s, 55 words
+Le RAG est une technique qui combine la génération de texte par un modèle d'intelligence artificielle avec la récupération d'informations externes. Cela permet au système de s'appuyer sur des documents spécifiques pour enrichir ses réponses et éviter les hallucinations. En reliant l'IA aux données réelles, il améliore considérablement la précision et la fiabilité des résultats.
+
+[ar] 172.6s, 55 words
+تقنية RAG هي نهج يجمع بين استخراج المعلومات من مصادر خارجية وتوليدها بواسطة نماذج الذكاء الاصطناعي. تهدف هذه التقنية إلى تحسين دقة النماذج عن طريق تزويدها بمعلومات محدثة وموثوقة بدلاً من الاعتماد فقط على بيانات التدريب القديمة. يتم ذلك عبر البحث في قاعدة المعرفة قبل أن يقوم النموذج بصياغة الإجابة النهائية بناءً على البيانات المسترجعة.
+
